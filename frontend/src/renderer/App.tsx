@@ -15,7 +15,7 @@ export default function App() {
   const [data, setData] = useState<any>(undefined);
 
   const getData = () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPIKey}`;
+    const url = `http://10.0.128.64:8080/data`;
 
     // @ts-ignore
     axios
