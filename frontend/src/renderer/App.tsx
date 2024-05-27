@@ -13,6 +13,24 @@ const newsAPIKey = '21ef90f50c9046c792ebc1abe2901822';
 
 export default function App() {
   const [data, setData] = useState<any>(undefined);
+  const [current, setCurrent] = useState<any>({hours: 0, minutes: 0, date: ''});
+
+  useEffect(() => {
+    function setTime() {
+      const d = new Date();
+
+      setCurrent({
+        hours: d.getHours(),
+        minutes: d.getMinutes(),
+        date: `${d.getMonth()}/${d.getDay()}`,
+      });
+    }
+
+    const intervalId = setInterval(() => {
+      setTime();
+    }, 1000 * 15); // in milliseconds
+    return () => clearInterval(intervalId);
+  }, []);
 
   const getData = () => {
     const url = `http://10.0.128.64:8080/data`;
@@ -48,7 +66,7 @@ export default function App() {
           color="text.secondary"
           gutterBottom
         >
-          12:24 PM
+          {current.hours}:{current.minutes}
         </Typography>
         <Typography
           sx={{
@@ -60,7 +78,7 @@ export default function App() {
           color="text.secondary"
           gutterBottom
         >
-          5/23/24
+          {current.date}/24
         </Typography>
       </div>
     );
