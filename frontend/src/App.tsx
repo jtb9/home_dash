@@ -58,7 +58,7 @@ export default function App() {
       <div style={{ padding: '15px', display: 'flex', alignContent: 'column' }}>
         <Typography
           sx={{
-            fontSize: 60,
+            fontSize: 200,
             fontFamily: '"Crimson Text", serif',
             textAlign: 'center',
           }}
