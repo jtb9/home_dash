@@ -123,7 +123,7 @@ export default function App() {
 
   const renderStream1 = () => {
     return (
-      <div style={{ height: '100%' }} className="stream">
+      <div style={{ height: '50%' }} className="stream">
         <iframe
           style={{
             display: 'block',
@@ -165,6 +165,7 @@ export default function App() {
           }}
         >
           <div style={{ flex: '1', maxWidth: '40%', flexDirection: 'column' }}>
+            <img style={{width: '100%'}} src = "https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
             {renderStream1()}
           </div>
           <div style={{ flex: '1', flexDirection: 'column' }}>
