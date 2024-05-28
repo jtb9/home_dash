@@ -33,7 +33,7 @@ export default function App() {
   }, []);
 
   const getData = () => {
-    const url = `http://10.0.128.64:8080/data`;
+    const url = `http://localhost:8080/data`;
 
     // @ts-ignore
     axios
