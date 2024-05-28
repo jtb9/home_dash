@@ -89,7 +89,7 @@ export default function App() {
     }
 
     return (
-      <TableContainer>
+      <TableContainer sx={{position: 'relative', top: '-80px'}}>
         <Table sx={{ width: '100%' }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -164,7 +164,7 @@ export default function App() {
             width: '100%',
           }}
         >
-          <div style={{ flex: '1', flexDirection: 'column' }}>
+          <div style={{ flex: '1', maxWidth: '40%', flexDirection: 'column' }}>
             {renderStream1()}
           </div>
           <div style={{ flex: '1', flexDirection: 'column' }}>
