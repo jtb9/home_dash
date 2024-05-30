@@ -96,7 +96,9 @@ function loadArticles(state) {
                 articles: data.data.articles,
                 localArticles: williamsportData.data.articles
             })
-        })
+        }).catch(e) {
+            console.log(e);
+        }
     })
 }
 
