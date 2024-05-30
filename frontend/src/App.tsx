@@ -89,6 +89,22 @@ export default function App() {
       });
   }
 
+  const getCurrentHour = () => {
+    let base = new Date().getHours().toString();
+
+    if (parseInt(base) > 12) {
+      base = (parseInt(base) - 12).toString();
+    }
+
+    if (base.length === 1) {
+      base = `0${base}`;
+      return base;
+    }
+    else {
+      return base;
+    }
+  }
+
   const getCurrentSystemTemp = () => {
     if (data === undefined || data.weather === undefined) {
       return "Unkown";
@@ -151,8 +167,6 @@ export default function App() {
       minutes = `0${minutes}`
     }
 
-    console.log(minutes);
-
     return (
       <div style={{ padding: '15px', display: 'flex', alignContent: 'column' }}>
         <Typography
@@ -164,7 +178,7 @@ export default function App() {
           color="text.secondary"
           gutterBottom
         >
-          {new Date().getHours() + ":" + minutes}
+          {getCurrentHour() + ":" + minutes}
         </Typography>
         <Typography
           sx={{
