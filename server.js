@@ -6,6 +6,7 @@ var exec = require('child_process').exec;
 const app = express();
 const port = 8080;
 var cors = require('cors')
+const si = require('systeminformation');
 
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
@@ -55,10 +56,17 @@ function loadWeather(state) {
         }
     }).then((data) => {
         try {
-            setState({
-                ...state,
-                weather: data.data.timelines.daily[0].values
-            })
+            si.cpuTemperature()
+                .then(cpuData => {
+                    weather.cpuTemp = cpuData.main;
+
+                    setState({
+                        ...state,
+                        weather: data.data.timelines.daily[0].values
+                    })
+                })
+                .catch(error => console.error(error));
+
         }
         catch (e) {
             console.error(e);

@@ -89,6 +89,15 @@ export default function App() {
       });
   }
 
+  const getCurrentSystemTemp = () => {
+    if (data === undefined || data.weather === undefined) {
+      return "Unkown";
+    }
+
+    let c = data.weather.cpuTemp;
+    return c;
+  }
+
   const getCurrentOutdorTemp = () => {
     if (data === undefined || data.weather === undefined) {
       return "Unkown";
@@ -165,7 +174,7 @@ export default function App() {
           {new Date().toDateString()}
         </Typography>
         <div style={{ paddingLeft: '15px' }}>
-          <Typography>System Temperature: Unknown</Typography>
+          <Typography>System Temperature: {getCurrentSystemTemp()}</Typography>
           <Typography>Room Temperature: Unknown</Typography>
           <Typography>Outdoor Temperature: {getCurrentOutdorTemp()}</Typography>
         </div>

@@ -1,5 +1,5 @@
 #!/bin/bash
-npm install express axios cors --save
+npm install express axios cors systeminformation
 cd dash
 npm install
 npx react-scripts build
