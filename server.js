@@ -1,4 +1,3 @@
-const newsAPIKey = '21ef90f50c9046c792ebc1abe2901822';
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
@@ -7,9 +6,13 @@ var exec = require('child_process').exec;
 const app = express();
 const port = 8080;
 var cors = require('cors')
+
+const NEWS_API_KEY = process.env.NEWS_API_KEY;
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+
 const {
     Worker, isMainThread, parentPort, workerData,
-  } = require('node:worker_threads');
+} = require('node:worker_threads');
 
 function getState() {
     try {
@@ -17,7 +20,7 @@ function getState() {
 
         return JSON.parse(buff);
     }
-    catch(e) {
+    catch (e) {
         console.log(e);
         return {}
     }
@@ -43,10 +46,30 @@ var child = exec('cd dash && npx react-scripts start')
 
 app.listen(port);
 
+function loadWeather(state) {
+    var url = 'https://api.tomorrow.io/v4/weather/forecast?location=42.3478,-71.0466&apikey=' + WEATHER_API_KEY;
+
+    axios.get(url, {
+        headers: {
+            'accept': "application/json"
+        }
+    }).then((data) => {
+        try {
+            setState({
+                ...state,
+                weather: data.data.timelines.daily[0].values
+            })
+        }
+        catch (e) {
+            console.error(e);
+        }
+    })
+}
+
 function loadArticles(state) {
     var url = 'https://newsapi.org/v2/top-headlines?' +
-          'country=us&' +
-          'apiKey=' + newsAPIKey;
+        'country=us&' +
+        'apiKey=' + NEWS_API_KEY;
 
     axios.get(url).then((data) => {
         setState({
@@ -57,11 +80,25 @@ function loadArticles(state) {
 }
 
 let iterationsSinceArticles = 0;
+let iterationsSinceWeather = 0;
 function runMainLoop() {
     setTimeout(() => {
         const state = getState();
 
         console.log('main monitor run');
+
+        if (state.weather === undefined) {
+            loadWeather(state);
+        }
+        else {
+            iterationsSinceWeather += 1;
+
+            if (iterationsSinceWeather >= 20) {
+                iterationsSinceWeather = 0;
+
+                loadWeather(state);
+            }
+        }
 
         if (state.articles === undefined) {
             loadArticles(state);
