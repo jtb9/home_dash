@@ -11,6 +11,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 const newsAPIKey = '21ef90f50c9046c792ebc1abe2901822';
 
+const rootTableStyle = {
+  border: '1px solid green',
+  borderRadius: '5px',
+  width: 'calc(100% - 5px)',
+  margin: '2px'
+}
+
 export default function App() {
   const [data, setData] = useState<any>(undefined);
   const [pokemonData, setPokemonData] = useState<any>(undefined);
@@ -80,7 +87,10 @@ export default function App() {
   }
 
   const getData = () => {
-    const url = `http://localhost:8080/data`;
+    let url = `http://localhost:8080/data`;
+
+    // for testing
+    url = `http://10.0.128.64:8080/data`;
 
     // @ts-ignore
     axios
@@ -147,10 +157,10 @@ export default function App() {
     }
 
     return (
-      <TableContainer sx={{ position: 'relative', top: '-80px' }}>
-        <Table sx={{ width: '100%' }} aria-label="simple table">
+      <TableContainer sx={{ position: 'relative', top: '-80px', ...rootTableStyle  }}>
+        <Table sx={{ width: '100%'}} aria-label="simple table">
           <TableHead>
-            <TableRow>
+            <TableRow style={{backgroundColor: "rgba(255,255,255,.1)"}} >
               <TableCell />
             </TableRow>
           </TableHead>
@@ -185,11 +195,11 @@ export default function App() {
     }
 
     return (
-      <TableContainer sx={{ position: 'relative', top: '-38px' }}>
-        <Table sx={{ width: '100%' }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
+      <TableContainer sx={{...rootTableStyle }}>
+        <Table sx={{ width: '100%'  }} aria-label="simple table">
+          <TableHead >
+            <TableRow style={{backgroundColor: "rgba(255,255,255,.1)"}} >
+              <TableCell  />
               <TableCell />
             </TableRow>
           </TableHead>
@@ -275,6 +285,7 @@ export default function App() {
           <div style={{ flex: '1', flexDirection: 'column' }}>
             {renderClock1()}
             {renderNews()}
+            <Typography>System Temperature: Unkown</Typography>
           </div>
         </div>
       </div>
