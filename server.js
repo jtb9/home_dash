@@ -56,13 +56,15 @@ function loadWeather(state) {
         }
     }).then((data) => {
         try {
+            let weather = data.data.timelines.daily[0].values;
+
             si.cpuTemperature()
                 .then(cpuData => {
                     weather.cpuTemp = cpuData.main;
 
                     setState({
                         ...state,
-                        weather: data.data.timelines.daily[0].values
+                        weather: weather
                     })
                 })
                 .catch(error => console.error(error));
