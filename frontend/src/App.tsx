@@ -14,7 +14,7 @@ const newsAPIKey = '21ef90f50c9046c792ebc1abe2901822';
 export default function App() {
   const [data, setData] = useState<any>(undefined);
   const [pokemonData, setPokemonData] = useState<any>(undefined);
-  const [current, setCurrent] = useState<any>({hours: 0, minutes: 0, date: ''});
+  const [current, setCurrent] = useState<any>({ hours: 0, minutes: 0, date: '' });
 
   useEffect(() => {
     function setTime() {
@@ -44,39 +44,39 @@ export default function App() {
   const getPokemonData = () => {
     const url = `https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.min.json`;
 
-        // @ts-ignore
-        axios
-        .get(url)
-        // @ts-ignore
-        .then((data) => {
+    // @ts-ignore
+    axios
+      .get(url)
+      // @ts-ignore
+      .then((data) => {
 
-          let rawData = data.data;
-          let filteredForToday = [];
+        let rawData = data.data;
+        let filteredForToday = [];
 
-          for (let i = 0; i < rawData.length; i++) {
-            const start = new Date(rawData[i].start);
-            const end = new Date(rawData[i].end);
-            const today = new Date();
+        for (let i = 0; i < rawData.length; i++) {
+          const start = new Date(rawData[i].start);
+          const end = new Date(rawData[i].end);
+          const today = new Date();
 
-            if (start.getTime() <= today.getTime() && end.getTime() >= today.getTime()) {
-              rawData[i].timeDisplay = `from ${start.toDateString()} at ${start.getHours()} to ${end.toDateString()} at ${end.getHours()}`
+          if (start.getTime() <= today.getTime() && end.getTime() >= today.getTime()) {
+            rawData[i].timeDisplay = `from ${start.toDateString()} at ${start.getHours()} to ${end.toDateString()} at ${end.getHours()}`
 
-              filteredForToday.push(rawData[i]);
-            }
+            filteredForToday.push(rawData[i]);
           }
+        }
 
-          filteredForToday = filteredForToday.sort((a, b) => {
-            //@ts-ignore
-            return new Date(a.end) - new Date(b.end)
-          })
-
-          // @ts-ignore
-          setPokemonData(filteredForToday);
-          // @ts-ignore
+        filteredForToday = filteredForToday.sort((a, b) => {
+          //@ts-ignore
+          return new Date(a.end) - new Date(b.end)
         })
-        .catch((e) => {
-          console.error(e);
-        });
+
+        // @ts-ignore
+        setPokemonData(filteredForToday);
+        // @ts-ignore
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   }
 
   const getData = () => {
@@ -102,6 +102,16 @@ export default function App() {
   }, []);
 
   const renderClock1 = () => {
+    let minutes = new Date().getMinutes().toString();
+
+    //@ts-ignore
+    if (minutes.length === 1) {
+      //@ts-ignore
+      minutes = `0${minutes}`
+    }
+
+    console.log(minutes);
+
     return (
       <div style={{ padding: '15px', display: 'flex', alignContent: 'column' }}>
         <Typography
@@ -113,7 +123,7 @@ export default function App() {
           color="text.secondary"
           gutterBottom
         >
-          {new Date().getHours() + ":" + new Date().getMinutes()}
+          {new Date().getHours() + ":" + minutes}
         </Typography>
         <Typography
           sx={{
@@ -137,7 +147,7 @@ export default function App() {
     }
 
     return (
-      <TableContainer sx={{position: 'relative', top: '-80px'}}>
+      <TableContainer sx={{ position: 'relative', top: '-80px' }}>
         <Table sx={{ width: '100%' }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -175,7 +185,7 @@ export default function App() {
     }
 
     return (
-      <TableContainer sx={{position: 'relative', top: '-80px'}}>
+      <TableContainer sx={{ position: 'relative', top: '-38px' }}>
         <Table sx={{ width: '100%' }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -259,7 +269,7 @@ export default function App() {
           }}
         >
           <div style={{ flex: '1', maxWidth: '40%', flexDirection: 'column' }}>
-            <img style={{width: '100%'}} src = "https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
+            <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
             {renderPokemon()}
           </div>
           <div style={{ flex: '1', flexDirection: 'column' }}>
