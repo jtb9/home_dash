@@ -50,30 +50,37 @@ app.listen(port);
 function loadWeather(state) {
     var url = 'https://api.tomorrow.io/v4/weather/forecast?location=42.3478,-71.0466&apikey=' + WEATHER_API_KEY;
 
-    axios.get(url, {
-        headers: {
-            'accept': "application/json"
-        }
-    }).then((data) => {
-        try {
-            let weather = data.data.timelines.daily[0].values;
+    try {
+        axios.get(url, {
+            headers: {
+                'accept': "application/json"
+            }
+        }).then((data) => {
+            try {
+                let weather = data.data.timelines.daily[0].values;
 
-            si.cpuTemperature()
-                .then(cpuData => {
-                    weather.cpuTemp = cpuData.main;
+                si.cpuTemperature()
+                    .then(cpuData => {
+                        weather.cpuTemp = cpuData.main;
 
-                    setState({
-                        ...state,
-                        weather: weather
+                        setState({
+                            ...state,
+                            weather: weather
+                        })
                     })
-                })
-                .catch(error => console.error(error));
+                    .catch(error => console.error(error));
 
-        }
-        catch (e) {
-            console.error(e);
-        }
-    })
+            }
+            catch (e) {
+                console.error(e);
+            }
+        }).catch((e) => {
+            
+        })
+    }
+    catch (e) {
+
+    }
 }
 
 function loadArticles(state) {
@@ -82,12 +89,17 @@ function loadArticles(state) {
         'apiKey=' + NEWS_API_KEY;
 
     axios.get(url).then((data) => {
-        setState({
-            ...state,
-            articles: data.data.articles
+        var williamsportUrl = `https://newsapi.org/v2/top-headlines?country=us&q=Williamsport&apiKey=${NEWS_API_KEY}`;
+        axios.get(williamsportUrl).then((williamsportData) => {
+            setState({
+                ...state,
+                articles: data.data.articles,
+                localArticles: williamsportData.data.articles
+            })
         })
     })
 }
+
 
 let iterationsSinceArticles = 0;
 let iterationsSinceWeather = 0;
