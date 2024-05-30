@@ -89,6 +89,20 @@ export default function App() {
       });
   }
 
+  const getCurrentOutdorTemp = () => {
+    if (data === undefined || data.weather === undefined) {
+      return "Unkown";
+    }
+
+    let c = data.weather.temperatureApparentAvg;
+    let f = 0;
+
+    // Using the above formula
+    f = (c * (9 / 5)) + 32;
+
+    return `${Math.round(f)}F`;
+  }
+
   const getData = () => {
     let url = `http://localhost:8080/data`;
 
@@ -153,7 +167,7 @@ export default function App() {
         <div style={{ paddingLeft: '15px' }}>
           <Typography>System Temperature: Unknown</Typography>
           <Typography>Room Temperature: Unknown</Typography>
-          <Typography>Outdoor Temperature: Unknown</Typography>
+          <Typography>Outdoor Temperature: {getCurrentOutdorTemp()}</Typography>
         </div>
       </div>
     );
@@ -174,38 +188,6 @@ export default function App() {
         ))}
       </NewsTicker>
     </div>
-
-    // return (
-    //   <TableContainer sx={{ position: 'relative', top: '-80px', ...rootTableStyle }}>
-    //     <Table sx={{ width: '100%' }} aria-label="simple table">
-    //       <TableHead>
-    //         <TableRow style={{ backgroundColor: "rgba(255,255,255,.1)" }} >
-    //           <TableCell />
-    //         </TableRow>
-    //       </TableHead>
-    //       <TableBody>
-    //         {data.articles.map((row: any) => (
-    //           <TableRow
-    //             key={row.title}
-    //             sx={{
-    //               '&:last-child td, &:last-child th': { border: 0 },
-    //               padding: '2px',
-    //               margin: '2px',
-    //             }}
-    //           >
-    //             <TableCell
-    //               sx={{ padding: '5px', margin: '0px' }}
-    //               component="th"
-    //               scope="row"
-    //             >
-    //               {row.title}
-    //             </TableCell>
-    //           </TableRow>
-    //         ))}
-    //       </TableBody>
-    //     </Table>
-    //   </TableContainer>
-    // );
   };
 
   const renderPokemon = () => {
