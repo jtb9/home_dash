@@ -95,7 +95,12 @@ export default function App() {
     }
 
     let c = data.weather.cpuTemp;
-    return `${Math.round(c)}F`;
+    let f = 0;
+
+    // Using the above formula
+    f = (c * (9 / 5)) + 32;
+
+    return `${Math.round(f)}F`;
   }
 
   const getCurrentOutdorTemp = () => {
