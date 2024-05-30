@@ -147,6 +147,11 @@ export default function App() {
         >
           {new Date().toDateString()}
         </Typography>
+        <div style={{paddingLeft: '15px'}}>
+          <Typography>System Temperature: Unknown</Typography>
+          <Typography>Room Temperature: Unknown</Typography>
+          <Typography>Outdoor Temperature: Unknown</Typography>
+        </div>
       </div>
     );
   };
@@ -157,10 +162,10 @@ export default function App() {
     }
 
     return (
-      <TableContainer sx={{ position: 'relative', top: '-80px', ...rootTableStyle  }}>
-        <Table sx={{ width: '100%'}} aria-label="simple table">
+      <TableContainer sx={{ position: 'relative', top: '-80px', ...rootTableStyle }}>
+        <Table sx={{ width: '100%' }} aria-label="simple table">
           <TableHead>
-            <TableRow style={{backgroundColor: "rgba(255,255,255,.1)"}} >
+            <TableRow style={{ backgroundColor: "rgba(255,255,255,.1)" }} >
               <TableCell />
             </TableRow>
           </TableHead>
@@ -195,11 +200,11 @@ export default function App() {
     }
 
     return (
-      <TableContainer sx={{...rootTableStyle }}>
-        <Table sx={{ width: '100%'  }} aria-label="simple table">
+      <TableContainer sx={{ ...rootTableStyle }}>
+        <Table sx={{ width: '100%' }} aria-label="simple table">
           <TableHead >
-            <TableRow style={{backgroundColor: "rgba(255,255,255,.1)"}} >
-              <TableCell  />
+            <TableRow style={{ backgroundColor: "rgba(255,255,255,.1)" }} >
+              <TableCell />
               <TableCell />
             </TableRow>
           </TableHead>
@@ -285,7 +290,6 @@ export default function App() {
           <div style={{ flex: '1', flexDirection: 'column' }}>
             {renderClock1()}
             {renderNews()}
-            <Typography>System Temperature: Unkown</Typography>
           </div>
         </div>
       </div>
