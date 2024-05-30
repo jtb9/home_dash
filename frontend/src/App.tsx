@@ -206,14 +206,21 @@ export default function App() {
       return <Typography>Loading...</Typography>;
     }
 
+    let titles = [];
+
+    for (let i = 0; i < data.articles.length; i++) {
+      const t = data.articles[i];
+
+      if (t !== "[Removed]") {
+        titles.push(<div>
+          {t}
+        </div>)
+      }
+    }
+
     return <div style={rootTableStyle}>
       <NewsTicker>
-        {data.articles.map((row: any) => (
-          <div
-          >
-            {row.title}
-          </div>
-        ))}
+        {titles}
       </NewsTicker>
     </div>
   };
