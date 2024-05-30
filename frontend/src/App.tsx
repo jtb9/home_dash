@@ -209,7 +209,7 @@ export default function App() {
     let titles = [];
 
     for (let i = 0; i < data.articles.length; i++) {
-      const t = data.articles[i];
+      const t = data.articles[i].title;
 
       if (t !== "[Removed]") {
         titles.push(<div>
