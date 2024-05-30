@@ -13,6 +13,7 @@ const newsAPIKey = '21ef90f50c9046c792ebc1abe2901822';
 
 export default function App() {
   const [data, setData] = useState<any>(undefined);
+  const [pokemonData, setPokemonData] = useState<any>(undefined);
   const [current, setCurrent] = useState<any>({hours: 0, minutes: 0, date: ''});
 
   useEffect(() => {
@@ -31,6 +32,52 @@ export default function App() {
     }, 1000 * 15); // in milliseconds
     return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getData();
+      getPokemonData();
+    }, 1000 * 60);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const getPokemonData = () => {
+    const url = `https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.min.json`;
+
+        // @ts-ignore
+        axios
+        .get(url)
+        // @ts-ignore
+        .then((data) => {
+
+          let rawData = data.data;
+          let filteredForToday = [];
+
+          for (let i = 0; i < rawData.length; i++) {
+            const start = new Date(rawData[i].start);
+            const end = new Date(rawData[i].end);
+            const today = new Date();
+
+            if (start.getTime() <= today.getTime() && end.getTime() >= today.getTime()) {
+              rawData[i].timeDisplay = `from ${start.toDateString()} at ${start.getHours()} to ${end.toDateString()} at ${end.getHours()}`
+
+              filteredForToday.push(rawData[i]);
+            }
+          }
+
+          filteredForToday = filteredForToday.sort((a, b) => {
+            //@ts-ignore
+            return new Date(a.end) - new Date(b.end)
+          })
+
+          // @ts-ignore
+          setPokemonData(filteredForToday);
+          // @ts-ignore
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+  }
 
   const getData = () => {
     const url = `http://localhost:8080/data`;
@@ -51,6 +98,7 @@ export default function App() {
 
   useEffect(() => {
     getData();
+    getPokemonData();
   }, []);
 
   const renderClock1 = () => {
@@ -58,14 +106,14 @@ export default function App() {
       <div style={{ padding: '15px', display: 'flex', alignContent: 'column' }}>
         <Typography
           sx={{
-            fontSize: 200,
+            fontSize: 100,
             fontFamily: '"Crimson Text", serif',
             textAlign: 'center',
           }}
           color="text.secondary"
           gutterBottom
         >
-          {current.hours}:{current.minutes}
+          {new Date().getHours() + ":" + new Date().getMinutes()}
         </Typography>
         <Typography
           sx={{
@@ -77,7 +125,7 @@ export default function App() {
           color="text.secondary"
           gutterBottom
         >
-          {current.date}/24
+          {new Date().toDateString()}
         </Typography>
       </div>
     );
@@ -120,6 +168,52 @@ export default function App() {
       </TableContainer>
     );
   };
+
+  const renderPokemon = () => {
+    if (pokemonData === undefined) {
+      return <Typography>Loading...</Typography>;
+    }
+
+    return (
+      <TableContainer sx={{position: 'relative', top: '-80px'}}>
+        <Table sx={{ width: '100%' }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell />
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {pokemonData.map((row: any) => (
+              <TableRow
+                key={row.name}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  padding: '2px',
+                  margin: '2px',
+                }}
+              >
+                <TableCell
+                  sx={{ padding: '5px', margin: '0px' }}
+                  component="th"
+                  scope="row"
+                >
+                  {row.name}
+                </TableCell>
+                <TableCell
+                  sx={{ padding: '5px', margin: '0px' }}
+                  component="th"
+                  scope="row"
+                >
+                  {row.timeDisplay}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
 
   const renderStream1 = () => {
     return (
@@ -170,6 +264,7 @@ export default function App() {
           </div>
           <div style={{ flex: '1', flexDirection: 'column' }}>
             {renderClock1()}
+            {renderPokemon()}
             {renderNews()}
           </div>
         </div>
