@@ -95,7 +95,7 @@ export default function App() {
     }
 
     let c = data.weather.cpuTemp;
-    return c;
+    return `${Math.round(c)}F`;
   }
 
   const getCurrentOutdorTemp = () => {
