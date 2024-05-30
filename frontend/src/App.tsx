@@ -9,6 +9,9 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+//@ts-ignore
+import NewsTicker from 'react-advanced-news-ticker';
+
 const newsAPIKey = '21ef90f50c9046c792ebc1abe2901822';
 
 const rootTableStyle = {
@@ -147,7 +150,7 @@ export default function App() {
         >
           {new Date().toDateString()}
         </Typography>
-        <div style={{paddingLeft: '15px'}}>
+        <div style={{ paddingLeft: '15px' }}>
           <Typography>System Temperature: Unknown</Typography>
           <Typography>Room Temperature: Unknown</Typography>
           <Typography>Outdoor Temperature: Unknown</Typography>
@@ -161,37 +164,48 @@ export default function App() {
       return <Typography>Loading...</Typography>;
     }
 
-    return (
-      <TableContainer sx={{ position: 'relative', top: '-80px', ...rootTableStyle }}>
-        <Table sx={{ width: '100%' }} aria-label="simple table">
-          <TableHead>
-            <TableRow style={{ backgroundColor: "rgba(255,255,255,.1)" }} >
-              <TableCell />
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.articles.map((row: any) => (
-              <TableRow
-                key={row.title}
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 },
-                  padding: '2px',
-                  margin: '2px',
-                }}
-              >
-                <TableCell
-                  sx={{ padding: '5px', margin: '0px' }}
-                  component="th"
-                  scope="row"
-                >
-                  {row.title}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
+    return <div style={rootTableStyle}>
+      <NewsTicker>
+        {data.articles.map((row: any) => (
+          <div
+          >
+            {row.title}
+          </div>
+        ))}
+      </NewsTicker>
+    </div>
+
+    // return (
+    //   <TableContainer sx={{ position: 'relative', top: '-80px', ...rootTableStyle }}>
+    //     <Table sx={{ width: '100%' }} aria-label="simple table">
+    //       <TableHead>
+    //         <TableRow style={{ backgroundColor: "rgba(255,255,255,.1)" }} >
+    //           <TableCell />
+    //         </TableRow>
+    //       </TableHead>
+    //       <TableBody>
+    //         {data.articles.map((row: any) => (
+    //           <TableRow
+    //             key={row.title}
+    //             sx={{
+    //               '&:last-child td, &:last-child th': { border: 0 },
+    //               padding: '2px',
+    //               margin: '2px',
+    //             }}
+    //           >
+    //             <TableCell
+    //               sx={{ padding: '5px', margin: '0px' }}
+    //               component="th"
+    //               scope="row"
+    //             >
+    //               {row.title}
+    //             </TableCell>
+    //           </TableRow>
+    //         ))}
+    //       </TableBody>
+    //     </Table>
+    //   </TableContainer>
+    // );
   };
 
   const renderPokemon = () => {
@@ -285,11 +299,12 @@ export default function App() {
         >
           <div style={{ flex: '1', maxWidth: '40%', flexDirection: 'column' }}>
             <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
-            {renderPokemon()}
+            <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image2" />
           </div>
           <div style={{ flex: '1', flexDirection: 'column' }}>
             {renderClock1()}
             {renderNews()}
+            {renderPokemon()}
           </div>
         </div>
       </div>
