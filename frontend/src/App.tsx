@@ -231,6 +231,44 @@ export default function App() {
       return <Typography>Loading...</Typography>;
     }
 
+    let pokemonDataMax = [];
+
+    let sizeOfSet = pokemonData.length;
+
+    if (sizeOfSet >= 10) {
+      sizeOfSet = 10;
+    }
+
+    for (let i = 0; i < sizeOfSet; i++) {
+      const row = pokemonData[i];
+
+      pokemonDataMax.push(
+        <TableRow
+        key={row.name}
+        sx={{
+          '&:last-child td, &:last-child th': { border: 0 },
+          padding: '2px',
+          margin: '2px',
+        }}
+      >
+        <TableCell
+          sx={{ padding: '5px', margin: '0px' }}
+          component="th"
+          scope="row"
+        >
+          {row.name}
+        </TableCell>
+        <TableCell
+          sx={{ padding: '5px', margin: '0px' }}
+          component="th"
+          scope="row"
+        >
+          {row.timeDisplay}
+        </TableCell>
+      </TableRow>
+      )
+    }
+
     return (
       <TableContainer sx={{ ...rootTableStyle }}>
         <Table sx={{ width: '100%' }} aria-label="simple table">
@@ -241,31 +279,7 @@ export default function App() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pokemonData.map((row: any) => (
-              <TableRow
-                key={row.name}
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 },
-                  padding: '2px',
-                  margin: '2px',
-                }}
-              >
-                <TableCell
-                  sx={{ padding: '5px', margin: '0px' }}
-                  component="th"
-                  scope="row"
-                >
-                  {row.name}
-                </TableCell>
-                <TableCell
-                  sx={{ padding: '5px', margin: '0px' }}
-                  component="th"
-                  scope="row"
-                >
-                  {row.timeDisplay}
-                </TableCell>
-              </TableRow>
-            ))}
+            {pokemonDataMax}
           </TableBody>
         </Table>
       </TableContainer>
@@ -330,7 +344,7 @@ export default function App() {
           <div style={{ flex: '1', flexDirection: 'column' }}>
             <div style={{
               background: 'linear-gradient(125deg, rgba(16,255,0,1) 0%, rgba(9,121,113,1) 25%, rgba(0,255,139,1) 100%)',
-              height: '30px',
+              height: '46px',
               width: '100%'
             }}></div>
             {renderClock1()}
