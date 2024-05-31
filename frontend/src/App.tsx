@@ -175,8 +175,8 @@ export default function App() {
             fontSize: 100,
             fontFamily: '"Crimson Text", serif',
             textAlign: 'center',
+            color: 'yellow !important'
           }}
-          color="text.secondary"
           gutterBottom
         >
           {getCurrentHour() + ":" + minutes}
@@ -242,17 +242,25 @@ export default function App() {
     for (let i = 0; i < sizeOfSet; i++) {
       const row = pokemonData[i];
 
+      let extraStyle = {}
+
+      if (i === 0) {
+        //@ts-ignore
+        extraStyle.color = 'yellow !important';
+      }
+
       pokemonDataMax.push(
         <TableRow
         key={row.name}
         sx={{
+          
           '&:last-child td, &:last-child th': { border: 0 },
           padding: '2px',
           margin: '2px',
         }}
       >
         <TableCell
-          sx={{ padding: '5px', margin: '0px' }}
+          sx={{ padding: '5px', margin: '0px', ...extraStyle, }}
           component="th"
           scope="row"
         >
@@ -271,6 +279,10 @@ export default function App() {
 
     return (
       <TableContainer sx={{ ...rootTableStyle }}>
+        <div style={{position: 'relative'}}>
+          <img style={{width: '50px', position: 'absolute', left: '30px', top: '0px', zIndex: '10'}} src="zapdos.png" alt="zapdos" />
+          <img style={{width: '50px',  position: 'absolute', top: '-5px', zIndex: '10', transform: 'rotate(-10deg)'}} src="jolteon.png" alt="zapdos" />
+        </div>
         <Table sx={{ width: '100%' }} aria-label="simple table">
           <TableHead >
             <TableRow style={{ backgroundColor: "rgba(255,255,255,.1)" }} >
