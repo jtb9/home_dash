@@ -15,7 +15,8 @@ import NewsTicker from 'react-advanced-news-ticker';
 const newsAPIKey = '21ef90f50c9046c792ebc1abe2901822';
 
 const rootTableStyle = {
-  border: '3px solid green',
+  border: '2px solid rgba(0,200,0,0.3)',
+  outline: '1px solid green',
   borderRadius: '5px',
   width: 'calc(100% - 20px)',
   margin: '2px',
