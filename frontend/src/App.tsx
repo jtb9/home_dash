@@ -18,7 +18,7 @@ const rootTableStyle = {
   border: '2px solid rgba(0,200,0,0.3)',
   outline: '1px solid green',
   borderRadius: '5px',
-  width: 'calc(100% - 20px)',
+  width: 'calc(100% - 22px)',
   margin: '2px',
   marginLeft: '3px',
   boxShadow: '0px 0px 3px 1px rgba(74,255,46,0.2)'
