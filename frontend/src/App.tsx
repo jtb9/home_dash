@@ -305,7 +305,7 @@ export default function App() {
   };
 
   const renderImageRow = () => {
-    return <div style={{display: 'flex', alignContent: 'row'}}>
+    return <div style={{display: 'flex', alignContent: 'row', height: '100%'}}>
       <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_1.jpg" alt="image1" />
       <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_2.jpg" alt="image1" />
       <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_3.jpg" alt="image1" />
@@ -337,20 +337,26 @@ export default function App() {
             width: '100%',
           }}
         >
-          <div style={{ flex: '1', maxWidth: '38%', flexDirection: 'column' }}>
+          <div style={{ width: '38%', overflow: 'hidden', flexDirection: 'column' }}>
             <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
             <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image2" />
           </div>
-          <div style={{ flex: '1', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', width: '62%', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'end' }}>
             <div style={{
               background: 'linear-gradient(125deg, rgba(16,255,0,1) 0%, rgba(9,121,113,1) 25%, rgba(0,255,139,1) 100%)',
-              height: '46px',
+              height: '76px',
               width: '100%'
             }}></div>
-            {renderClock1()}
-            {renderNews()}
-            {renderPokemon()}
-            {renderImageRow()}
+
+            <div style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
+              {renderClock1()}
+              {renderNews()}
+              {renderPokemon()}
+            </div>
+
+            <div style={{width: '100%', height: '200px'}}>
+              {renderImageRow()}
+            </div>
           </div>
         </div>
       </div>
