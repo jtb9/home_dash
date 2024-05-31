@@ -320,7 +320,18 @@ export default function App() {
     return <div style={{display: 'flex', alignContent: 'row', height: '100%'}}>
       <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_1.jpg" alt="image1" />
       <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_2.jpg" alt="image1" />
-      <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_3.jpg" alt="image1" />
+      {/* <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_3.jpg" alt="image1" /> */}
+      
+      <iframe 
+        style={{
+          display: 'block',
+          width: '33%',
+          height: '100%'
+        }}
+        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=°F&metricWind=mph&zoom=7&overlay=rain&product=ecmwf&level=surface&lat=41.104&lon=-76.871&pressure=true&message=true" 
+        //@ts-ignore
+        frameborder="0"
+        />
     </div>
   }
 

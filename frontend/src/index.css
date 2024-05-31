@@ -14,10 +14,6 @@ th {
   border-color: rgba(255,255,255,0.2) !important;
 }
 
-iframe {
-  z-index: -1;
-}
-
 body, html, #root {
   width: 100%;
   height: 100%;
