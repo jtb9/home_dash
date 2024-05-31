@@ -196,7 +196,7 @@ export default function App() {
         <div style={{ paddingLeft: '15px' }}>
           <Typography>System Temperature: {getCurrentSystemTemp()}</Typography>
           <Typography>Room Temperature: Unknown</Typography>
-          <Typography>Outdoor Temperature: {getCurrentOutdorTemp()}</Typography>
+          {/* <Typography>Outdoor Temperature: {getCurrentOutdorTemp()}</Typography> */}
         </div>
       </div>
     );
