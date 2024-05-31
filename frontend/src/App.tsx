@@ -18,7 +18,8 @@ const rootTableStyle = {
   border: '1px solid green',
   borderRadius: '5px',
   width: 'calc(100% - 5px)',
-  margin: '2px'
+  margin: '2px',
+  boxShadow: '0px 0px 3px 1px rgba(74,255,46,0.2)'
 }
 
 export default function App() {
@@ -289,6 +290,14 @@ export default function App() {
     );
   };
 
+  const renderImageRow = () => {
+    return <div style={{display: 'flex', alignContent: 'row'}}>
+      <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_2_1.jpg" alt="image1" />
+      <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_2_2.jpg" alt="image1" />
+      <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_2_3.jpg" alt="image1" />
+    </div>
+  }
+
   return (
     <div
       style={{
@@ -319,9 +328,15 @@ export default function App() {
             <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image2" />
           </div>
           <div style={{ flex: '1', flexDirection: 'column' }}>
+            <div style={{
+              background: 'linear-gradient(125deg, rgba(16,255,0,1) 0%, rgba(9,121,113,1) 25%, rgba(0,255,139,1) 100%)',
+              height: '30px',
+              width: '100%'
+            }}></div>
             {renderClock1()}
             {renderNews()}
             {renderPokemon()}
+            {renderImageRow()}
           </div>
         </div>
       </div>

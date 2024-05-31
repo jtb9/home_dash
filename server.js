@@ -99,6 +99,8 @@ function loadArticles(state) {
         }).catch((e) => {
             console.log(e);
         })
+    }).catch((e) => {
+        console.log(e);
     })
 }
 
@@ -117,7 +119,7 @@ function runMainLoop() {
         else {
             iterationsSinceWeather += 1;
 
-            if (iterationsSinceWeather >= 20) {
+            if (iterationsSinceWeather >= 200) {
                 iterationsSinceWeather = 0;
 
                 loadWeather(state);

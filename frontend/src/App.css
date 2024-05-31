@@ -13,6 +13,10 @@ th {
   border-color: rgba(255,255,255,0.2) !important;
 }
 
+ul li::marker {
+  color: green !important;
+}
+
 body, html, #root {
   width: 100%;
   height: 100%;
