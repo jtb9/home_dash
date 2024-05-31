@@ -292,9 +292,9 @@ export default function App() {
 
   const renderImageRow = () => {
     return <div style={{display: 'flex', alignContent: 'row'}}>
-      <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_2_1.jpg" alt="image1" />
-      <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_2_2.jpg" alt="image1" />
-      <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_2_3.jpg" alt="image1" />
+      <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_1.jpg" alt="image1" />
+      <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_2.jpg" alt="image1" />
+      <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_3.jpg" alt="image1" />
     </div>
   }
 
