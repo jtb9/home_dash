@@ -20,6 +20,7 @@ const rootTableStyle = {
   borderRadius: '5px',
   width: 'calc(100% - 20px)',
   margin: '2px',
+  marginLeft: '3px',
   boxShadow: '0px 0px 3px 1px rgba(74,255,46,0.2)'
 }
 
