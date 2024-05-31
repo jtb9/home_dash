@@ -337,9 +337,9 @@ export default function App() {
             width: '100%',
           }}
         >
-          <div style={{ flex: '1', maxWidth: '40%', flexDirection: 'column' }}>
-            <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
-            <img style={{ width: '100%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image2" />
+          <div style={{ flex: '1', maxWidth: '38%', flexDirection: 'column' }}>
+            <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
+            <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image2" />
           </div>
           <div style={{ flex: '1', flexDirection: 'column' }}>
             <div style={{
