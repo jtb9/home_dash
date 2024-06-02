@@ -320,20 +320,9 @@ export default function App() {
 
   const renderImageRow = () => {
     return <div style={{display: 'flex', alignContent: 'row', height: '100%'}}>
-      <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_1.jpg" alt="image1" />
+      <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
       <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_2.jpg" alt="image1" />
-      {/* <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_2_3.jpg" alt="image1" /> */}
-      
-      <iframe 
-        style={{
-          display: 'block',
-          width: '33%',
-          height: '100%'
-        }}
-        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=°F&metricWind=mph&zoom=7&overlay=rain&product=ecmwf&level=surface&lat=41.104&lon=-76.871&pressure=true&message=true" 
-        //@ts-ignore
-        frameborder="0"
-        />
+      <img style={{ width: '33%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image1" />
     </div>
   }
 
@@ -363,8 +352,21 @@ export default function App() {
           }}
         >
           <div style={{ width: '38%', overflow: 'hidden', flexDirection: 'column' }}>
-            <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" />
-            <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image2" />
+            {/* <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_1_1.jpg" alt="image1" /> */}
+            {/* <img style={{ height: '50%' }} src="https://cdn.barnyak.com/auto/blog_set_3_3.jpg" alt="image2" /> */}
+            
+            <iframe  
+              height="50%" 
+              width="100%"
+              src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=°F&metricWind=mph&zoom=7&overlay=clouds&product=ecmwf&level=surface&lat=40.472&lon=-76.981&pressure=true&message=true" 
+              //@ts-ignore
+              frameborder="0" />
+            <iframe  
+              height="50%" 
+              width="100%"
+              src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=°F&metricWind=mph&zoom=7&overlay=radar&product=radar&level=surface&lat=40.472&lon=-76.981&detailLat=41.216&detailLon=-76.978&detail=true&pressure=true&message=true" 
+              //@ts-ignore
+              frameborder="0" />
           </div>
           <div style={{ display: 'flex', width: '62%', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'end' }}>
             <div style={{
